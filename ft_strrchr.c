@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 17:41:36 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/14 17:51:31 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:30:51 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ char	*ft_strrchr(const char *s, int c)
 		if (s[i] == (char)c)
 		{
 			has_c = 1;
+			result = (char *)(s + i);
 		}
 		i++;
 	}
 	if (has_c == 0)
 		return (NULL);
 	else
-	{
-		result = (char *)(s + i);
 		return (result);
-	}
 }
