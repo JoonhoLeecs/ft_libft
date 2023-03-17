@@ -6,38 +6,74 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:48:28 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/16 13:15:39 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:57:43 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static int	isset(char c, char const *set);
+static int	findstartoftrimmed(char const *s1, char const *set);
+static int	findendoftrimmed(char const *s1, char const *set);
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		s1_ind;
-	int		count;
+	int		start_ind;
+	int		end_ind;
 	char	*result;
+	int		s1_ind;
 	int		result_ind;
 
-	s1_ind = 0;
-	count = 0;
-	while (s1[s1_ind])
-		count += isset(s1[s1_ind++], set);
-	result = (char *)malloc((s1_ind - count + 1) * sizeof(char));
+	start_ind = findstartoftrimmed(s1, set);
+	end_ind = findendoftrimmed(s1, set);
+	if (start_ind > end_ind)
+		start_ind = end_ind--;
+	result = (char *)malloc((end_ind - start_ind + 2) * sizeof(char));
 	if (result == 0)
 		return ((char *)0);
-	s1_ind = 0;
+	s1_ind = start_ind;
 	result_ind = 0;
-	while (s1[s1_ind])
+	while (s1_ind <= end_ind)
 	{
-		if (isset(s1[s1_ind], set) == 0)
-			result[result_ind++] = s1[s1_ind];
+		result[result_ind++] = s1[s1_ind];
 		s1_ind++;
 	}
 	result[result_ind] = '\0';
 	return (result);
+}
+
+static int	findstartoftrimmed(char const *s1, char const *set)
+{
+	int	setcheck;
+	int	i;
+
+	i = 0;
+	setcheck = 1;
+	while (s1[i])
+	{
+		if (isset(s1[i], set) - setcheck == -1)
+			break ;
+		setcheck = isset(s1[i], set);
+		i++;
+	}
+	return (i);
+}
+
+static int	findendoftrimmed(char const *s1, char const *set)
+{
+	int	setcheck;
+	int	i;
+
+	i = ft_strlen(s1) - 1;
+	setcheck = 1;
+	while (i >= 0)
+	{
+		if (isset(s1[i], set) - setcheck == -1)
+			break ;
+		setcheck = isset(s1[i], set);
+		i--;
+	}
+	return (i);
 }
 
 static int	isset(char c, char const *set)

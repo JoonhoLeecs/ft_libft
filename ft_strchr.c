@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:56:26 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/15 17:37:58 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:54:19 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
-	size_t	len;
-	size_t	has_c;
-	char	*result;
+	size_t			i;
+	size_t			len;
+	size_t			has_c;
+	unsigned char	uc;
+	char			*result;
 
 	i = 0;
 	len = ft_strlen(s);
 	has_c = 0;
-	while ((i < len && c != 0) || (i <= len && c == 0))
+	uc = (unsigned char) c;
+	while ((i < len && uc != 0) || (i <= len && uc == 0))
 	{
-		if (s[i] == (char)c)
+		if ((unsigned char)s[i] == uc)
 		{
 			has_c = 1;
 			result = (char *)(s + i);
@@ -33,7 +35,7 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	if (has_c == 0)
-		return (NULL);
+		return ((char *)0);
 	else
 		return (result);
 }
