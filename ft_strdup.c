@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:17:09 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/15 12:21:30 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/19 12:20:51 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *src)
 
 	src_size = (ft_strlen(src) + 1) * sizeof(char);
 	dup = (char *)malloc(src_size);
-	if (dup == NULL)
+	if (dup == (char *)0)
 		return (0);
 	i = 0;
 	while (src[i])

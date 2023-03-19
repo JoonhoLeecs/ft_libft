@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:29:35 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/17 20:45:53 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:15:03 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*result;
 	t_list	*new;
+	void	*content;
 
 	result = 0;
 	if (!lst)
 		return (result);
 	while (lst)
 	{
-		new = ft_lstnew(f(lst->content));
+		content = f(lst->content);
+		new = ft_lstnew(content);
 		if (new == 0)
 		{
+			del(content);
 			ft_lstclear(&result, del);
+			result = 0;
 			break ;
 		}
 		ft_lstadd_back(&result, new);
