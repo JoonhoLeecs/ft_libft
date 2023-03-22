@@ -6,13 +6,13 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:59:12 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/16 14:29:15 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:12:27 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int	countsigndigit(int n);
+static unsigned int	count_sign_digit(int n);
 
 char	*ft_itoa(int n)
 {
@@ -20,16 +20,16 @@ char	*ft_itoa(int n)
 	int		i;
 	int		sign;
 
-	result = (char *) malloc((countsigndigit(n) + 1) * sizeof(char));
+	result = (char *) malloc((count_sign_digit(n) + 1) * sizeof(char));
 	if (result == 0)
-		return ((char *) 0);
+		return ((char *)0);
 	sign = 1;
 	if (n < 0)
 	{
 		result[0] = '-';
 		sign = -1;
 	}
-	i = countsigndigit(n) - 1;
+	i = count_sign_digit(n) - 1;
 	result[i + 1] = '\0';
 	while (n / 10 != 0)
 	{
@@ -40,7 +40,7 @@ char	*ft_itoa(int n)
 	return (result);
 }
 
-static unsigned int	countsigndigit(int n)
+static unsigned int	count_sign_digit(int n)
 {
 	unsigned int	i;
 

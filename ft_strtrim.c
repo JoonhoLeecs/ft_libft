@@ -6,15 +6,15 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:48:28 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/17 13:57:43 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:28:27 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static int	isset(char c, char const *set);
-static int	findstartoftrimmed(char const *s1, char const *set);
-static int	findendoftrimmed(char const *s1, char const *set);
+static int	find_start_of_trimmed(char const *s1, char const *set);
+static int	find_end_of_trimmed(char const *s1, char const *set);
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -24,8 +24,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		s1_ind;
 	int		result_ind;
 
-	start_ind = findstartoftrimmed(s1, set);
-	end_ind = findendoftrimmed(s1, set);
+	start_ind = find_start_of_trimmed(s1, set);
+	end_ind = find_end_of_trimmed(s1, set);
 	if (start_ind > end_ind)
 		start_ind = end_ind--;
 	result = (char *)malloc((end_ind - start_ind + 2) * sizeof(char));
@@ -42,7 +42,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (result);
 }
 
-static int	findstartoftrimmed(char const *s1, char const *set)
+static int	find_start_of_trimmed(char const *s1, char const *set)
 {
 	int	setcheck;
 	int	i;
@@ -59,7 +59,7 @@ static int	findstartoftrimmed(char const *s1, char const *set)
 	return (i);
 }
 
-static int	findendoftrimmed(char const *s1, char const *set)
+static int	find_end_of_trimmed(char const *s1, char const *set)
 {
 	int	setcheck;
 	int	i;
